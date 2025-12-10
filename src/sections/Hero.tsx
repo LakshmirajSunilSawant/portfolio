@@ -11,9 +11,8 @@ export const Hero = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="flex items-center gap-2 mb-6"
+                    className="mb-6"
                 >
-                    <div className="h-[2px] w-12 bg-purple-500"></div>
                     <span className="text-purple-400 font-medium tracking-wide">HELLO WORLD</span>
                 </motion.div>
 
