@@ -103,12 +103,13 @@ export const resumeData = {
             link: "https://github.com/LakshmirajSunilSawant/AI-powered-DevOps-Assistant"
         },
         {
-            title: "Cardiovascular Ailment Prognosis",
-            techStack: ["Python", "Scikit-learn", "Pandas", "NumPy", "TensorFlow"],
+            title: "TaxSmart AI – Intelligent Tax Filing Assistant",
+            techStack: ["Next.js", "TypeScript", "FastAPI", "Python", "Tailwind CSS", "Ollama", "Llama 3.2", "Clerk", "Supabase"],
             description: [
-                "Achieved 92% accuracy in heart disease prediction by developing and optimizing machine learning algorithms (KNN, Random Forest, SVM) in Python on 300+ patient records.",
-                "Enhanced model reliability through feature selection, cross-validation, and hyperparameter tuning."
-            ]
+                "Architected an end-to-end AI-driven tax advisory platform using Next.js 14, FastAPI, and Llama 3.2, implementing 4 core modules—ITR selection, deduction discovery, tax computation, and error validation—delivering real-time, on-device inference via Ollama.",
+                "Engineered a context-aware conversational assistant with 7-form ITR classification logic, automating income-source analysis and significantly reducing user effort by generating instant, personalized tax recommendations."
+            ],
+            link: "https://github.com/LakshmirajSunilSawant/tax-assistant"
         }
     ] as Project[],
     skills: {
