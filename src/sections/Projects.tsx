@@ -52,7 +52,7 @@ export const Projects = () => {
                                 {project.title}
                             </h3>
 
-                            <div className="flex flex-wrap gap-2 mb-6">
+                            <div className="flex flex-wrap gap-2 mb-4">
                                 {project.techStack.map((tech) => (
                                     <span
                                         key={tech}
@@ -63,7 +63,7 @@ export const Projects = () => {
                                 ))}
                             </div>
 
-                            <div className="mt-auto space-y-2 text-gray-400 text-sm leading-relaxed">
+                            <div className="space-y-2 text-gray-400 text-sm leading-relaxed">
                                 {project.description.map((desc, i) => (
                                     <p key={i}>{desc}</p>
                                 ))}
