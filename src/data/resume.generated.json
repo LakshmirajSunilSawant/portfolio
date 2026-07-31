@@ -1,0 +1,198 @@
+{
+  "sourceFile": "C:/Users/laksh/OneDrive/Documents/Projects/Lakshmiraj_Sawant (8).pdf",
+  "parsedAt": "2026-07-31T17:25:40.232Z",
+  "profile": {
+    "name": "LAKSHMIRAJ S. SAWANT",
+    "location": "Mumbai, Maharashtra",
+    "email": "sawantlakshmiraj22@gmail.com",
+    "phone": "+91 9967487564"
+  },
+  "education": [
+    {
+      "institution": "SRM Institute of Science and Technology",
+      "location": "Chennai, Tamil Nadu",
+      "qualification": "Bachelor of Technology - Computer Science; CGPA: 9.68",
+      "period": "2022 – 2026",
+      "notes": []
+    }
+  ],
+  "experience": [
+    {
+      "company": "Guidewire Software",
+      "location": "Bengaluru, India",
+      "title": "Associate Consultant Developer Intern",
+      "period": "June 2025 – Sept 2025 & Jan 2026 – Jun 2026",
+      "highlights": [
+        "Configured and customized PolicyCenter (PC) modules for an Australia-based client (ADICA), implementing rule enhancements and feature updates aligned with evolving business requirements.",
+        "Developed and maintained test builders and automated test cases, strengthening regression coverage and improving overall system reliability across Agile sprints.",
+        "Reduced data handling overhead by 15% through database query optimization and automated synchronization; drove architectural improvements enhancing system scalability and maintainability by 20%."
+      ]
+    },
+    {
+      "company": "Cellcomm Solutions",
+      "location": "Remote",
+      "title": "Software Engineer Intern",
+      "period": "Sept 2025 – Dec 2025",
+      "highlights": [
+        "Migrated platform storage from JSON files to SQLite, achieving 99% faster data loads (0.002s) and implementing automated, metadata-tracked backups for full recovery coverage — using an open-source stack to keep infrastructure costs near zero."
+      ]
+    },
+    {
+      "company": "Sakhatech Information Systems",
+      "location": "Remote",
+      "title": "Machine Learning Intern",
+      "period": "Sept 2024 – Dec 2024",
+      "highlights": [
+        "Enhanced model accuracy by 18% through end-to-end ML pipeline development — data preprocessing, feature engineering, and model training using Python and leading ML frameworks — with production-level tuning and cross-functional experimentation."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "InferStream — Real-Time ML Feature Store and Model Serving Pipeline",
+      "stack": [
+        "Apache Kafka",
+        "PyFlink",
+        "Feast",
+        "Redis",
+        "MLflow",
+        "BentoML",
+        "Airflow",
+        "FastAPI",
+        "Evidently AI",
+        "Docker"
+      ],
+      "highlights": [
+        "Built a production-grade MLOps pipeline ingesting 100 tick events/sec across 7 symbols, computing real-time features (VWAP, momentum, volatility) via PyFlink sliding windows with <100ms p99 latency.",
+        "Eliminated training/serving skew using Feast unified feature store (Redis online + DuckDB offline); automated nightly retraining and hourly drift detection via Airflow DAGs and Evidently AI PSI/KS tests."
+      ]
+    },
+    {
+      "title": "AI-Driven Observability and Self-Healing Platform",
+      "stack": [
+        "FastAPI",
+        "Next.js",
+        "Python",
+        "Kubernetes",
+        "Prometheus",
+        "Docker",
+        "LSTM Neural Networks"
+      ],
+      "highlights": [
+        "Built an AI-powered observability platform with LSTM-based anomaly prediction (75% accuracy), enabling 5-minute early incident alerts for SRE teams.",
+        "Developed a fully autonomous self-healing engine using Kubernetes and Prometheus that identifies root causes and executes automated remediation (pod restarts, autoscaling) without human intervention."
+      ]
+    },
+    {
+      "title": "TaxSmart AI – Intelligent Tax Filing Assistant",
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "FastAPI",
+        "Python",
+        "Tailwind CSS",
+        "Ollama",
+        "Llama 3.2",
+        "Clerk",
+        "Supabase"
+      ],
+      "highlights": [
+        "Architected an end-to-end AI-driven tax advisory platform implementing 4 core modules — ITR selection, deduction discovery, tax computation, and error validation — with real-time, on-device inference via Ollama + Llama 3.2.",
+        "Engineered a context-aware conversational assistant with 7-form ITR classification logic, automating income-source analysis and generating instant, personalized tax recommendations."
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "label": "Languages",
+      "items": [
+        "Python",
+        "TypeScript",
+        "JavaScript",
+        "Java",
+        "C++",
+        "C"
+      ]
+    },
+    {
+      "label": "Frameworks & Tools",
+      "items": [
+        "FastAPI",
+        "React",
+        "Next.js",
+        "Tailwind CSS",
+        "REST APIs",
+        "JWT",
+        "Postman",
+        "SoapUI",
+        "Cursor",
+        "Claude Code"
+      ]
+    },
+    {
+      "label": "Databases",
+      "items": [
+        "PostgreSQL",
+        "Supabase",
+        "SQLite",
+        "DuckDB"
+      ]
+    },
+    {
+      "label": "AI & MLOps",
+      "items": [
+        "TensorFlow",
+        "Llama 3.2",
+        "Ollama",
+        "MLflow",
+        "BentoML",
+        "Evidently AI",
+        "Machine Learning",
+        "LLM Integration",
+        "MLOps"
+      ]
+    },
+    {
+      "label": "DevOps & Cloud",
+      "items": [
+        "Docker",
+        "Kubernetes",
+        "Apache Kafka",
+        "Apache Flink",
+        "Apache Airflow",
+        "Git",
+        "GitHub Actions (CI/CD)",
+        "TeamCity",
+        "Bitbucket",
+        "Prometheus",
+        "Grafana",
+        "AWS(EC2, IAM)"
+      ]
+    },
+    {
+      "label": "Other",
+      "items": [
+        "Power BI",
+        "Tableau",
+        "Data Structures & Algorithms",
+        "OOP",
+        "System Design",
+        "Low-Level Design (LLD)"
+      ]
+    }
+  ],
+  "achievements": [
+    "Ranked 2nd out of 1,600+ students in the Computer Science department for the 2022–23 academic year (CGPA: 9.68).",
+    "Published research paper ”Cardiovascular Ailment Prognosis and Risk Assessment” in the IRAJ International Journal."
+  ],
+  "certificates": [
+    {
+      "name": "Advanced Learning Algorithms",
+      "issuer": "Coursera"
+    },
+    {
+      "name": "Oracle Cloud Infrastructure 2025 Certified Generative AI Professional",
+      "issuer": "Oracle"
+    }
+  ]
+}

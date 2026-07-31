@@ -1,10 +1,43 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>portfolio</title>
+
+    <title>Lakshmiraj Sawant — Software Engineer &amp; ML Practitioner</title>
+    <meta
+      name="description"
+      content="Lakshmiraj Sawant builds ML pipelines, self-healing infrastructure and developer tools. Selected projects, experience and contact."
+    />
+    <meta name="theme-color" content="#0c0b0a" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f6f3ee" media="(prefers-color-scheme: light)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Lakshmiraj Sawant — Software Engineer &amp; ML Practitioner" />
+    <meta
+      property="og:description"
+      content="ML pipelines, self-healing infrastructure and developer tools."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!--
+      Applies the stored theme before first paint. Inline and render-blocking on
+      purpose: a deferred script here means a visible flash of the wrong theme.
+    -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+          var theme = stored || (prefersLight ? 'light' : 'dark');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+          /* Private browsing can throw on localStorage; the dark default stands. */
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

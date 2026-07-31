@@ -1,77 +1,145 @@
-import { motion } from "framer-motion";
-import { ExternalLink, Code2 } from "lucide-react";
-import { resumeData } from "../data/resume";
+import { useMemo, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { Plus } from 'lucide-react';
+import { archiveFilters, featuredProjects, otherProjects } from '../data/projects';
+import { SectionHeader } from '../components/SectionHeader';
+import { ProjectCard } from '../components/ProjectCard';
+import { FadeIn } from '../components/Reveal';
+import { cn } from '../lib/cn';
 
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export const Projects = () => {
+    const reduced = useReducedMotion();
+    const [expanded, setExpanded] = useState(false);
+    const [filter, setFilter] = useState<string | null>(null);
+
+    const archive = useMemo(
+        () => (filter ? otherProjects.filter((project) => project.stack.includes(filter)) : otherProjects),
+        [filter],
+    );
+
     return (
-        <section id="projects" className="py-20 relative">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="mb-16"
-            >
-                <span className="text-purple-500 font-medium tracking-wider text-sm uppercase">Selected Work</span>
-                <h2 className="text-4xl md:text-5xl font-bold mt-2">Projects</h2>
-            </motion.div>
+        <section id="projects" className="mx-auto max-w-shell px-6 py-24 md:px-10 md:py-32">
+            <SectionHeader
+                index="03"
+                title="Projects"
+                aside={`${featuredProjects.length + otherProjects.length} public repositories, synced from GitHub.`}
+            />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {resumeData.projects.map((project, index) => (
-                    <motion.a
-                        key={index}
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        whileHover={{ y: -10, scale: 1.02, transition: { duration: 0.3 } }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.1 }}
-                        className="group relative h-full bg-white/5 rounded-2xl p-6 border border-white/10 hover:border-purple-500/50 transition-all overflow-hidden flex flex-col cursor-pointer"
-                    >
-                        {/* Hover Glow Effect */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                        {/* Ripple Effect on Hover */}
-                        <div className="absolute inset-0 bg-purple-500/10 opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-300"></div>
-
-                        <div className="relative z-10 flex-1 flex flex-col">
-                            <div className="flex justify-between items-start mb-4">
-                                <div className="p-3 bg-purple-500/20 rounded-lg text-purple-400 group-hover:bg-purple-500/30 transition-colors">
-                                    <Code2 size={24} />
-                                </div>
-                                {project.link && (
-                                    <div className="text-gray-400 group-hover:text-purple-400 transition-colors">
-                                        <ExternalLink size={20} />
-                                    </div>
-                                )}
-                            </div>
-
-                            <h3 className="text-2xl font-bold mb-3 group-hover:text-purple-400 transition-colors">
-                                {project.title}
-                            </h3>
-
-                            <div className="flex flex-wrap gap-2 mb-4">
-                                {project.techStack.map((tech) => (
-                                    <span
-                                        key={tech}
-                                        className="px-3 py-1 text-xs font-medium rounded-full bg-white/5 border border-white/5 text-gray-300 group-hover:border-purple-500/30 group-hover:bg-purple-500/10 transition-colors"
-                                    >
-                                        {tech}
-                                    </span>
-                                ))}
-                            </div>
-
-                            <div className="space-y-2 text-gray-400 text-sm leading-relaxed">
-                                {project.description.map((desc, i) => (
-                                    <p key={i}>{desc}</p>
-                                ))}
-                            </div>
-                        </div>
-                    </motion.a>
+            {/*
+              Asymmetric on purpose: the lead project spans both columns, so the
+              row has a clear focal point instead of three equal-weight tiles.
+            */}
+            <div className="grid gap-x-10 md:grid-cols-2">
+                {featuredProjects.map((project, index) => (
+                    <FadeIn key={project.name} delay={index * 0.07} className={index === 0 ? 'md:col-span-2' : ''}>
+                        <ProjectCard project={project} wide={index === 0} />
+                    </FadeIn>
                 ))}
             </div>
+
+            {otherProjects.length > 0 && (
+                <div className="mt-16 border-t border-line pt-10">
+                    <button
+                        type="button"
+                        onClick={() => setExpanded((open) => !open)}
+                        aria-expanded={expanded}
+                        aria-controls="project-archive"
+                        className="group flex w-full items-center justify-between gap-6 text-left"
+                    >
+                        <span className="font-display text-2xl md:text-3xl">
+                            {expanded ? 'Close the archive' : 'More from the archive'}
+                        </span>
+                        <span className="flex items-center gap-4">
+                            <span className="label hidden sm:inline">{otherProjects.length} more</span>
+                            <Plus
+                                size={22}
+                                aria-hidden="true"
+                                className={cn(
+                                    'shrink-0 text-muted transition-all duration-500 ease-reveal group-hover:text-ember',
+                                    expanded && 'rotate-45',
+                                )}
+                            />
+                        </span>
+                    </button>
+
+                    <AnimatePresence initial={false}>
+                        {expanded && (
+                            <motion.div
+                                id="project-archive"
+                                initial={reduced ? false : { height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={reduced ? undefined : { height: 0, opacity: 0 }}
+                                transition={{ duration: 0.6, ease: EASE }}
+                                className="overflow-hidden"
+                            >
+                                <div className="pt-12">
+                                    <div className="mb-10 flex flex-wrap gap-x-2 gap-y-2">
+                                        <FilterChip
+                                            label="All"
+                                            active={filter === null}
+                                            onClick={() => setFilter(null)}
+                                        />
+                                        {archiveFilters.map((tech) => (
+                                            <FilterChip
+                                                key={tech}
+                                                label={tech}
+                                                active={filter === tech}
+                                                onClick={() => setFilter(filter === tech ? null : tech)}
+                                            />
+                                        ))}
+                                    </div>
+
+                                    <div className="grid gap-x-10 md:grid-cols-2 lg:grid-cols-3">
+                                        {archive.map((project) => (
+                                            <motion.div
+                                                key={project.name}
+                                                layout={!reduced}
+                                                initial={reduced ? false : { opacity: 0, y: 12 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ duration: 0.45, ease: EASE }}
+                                            >
+                                                <ProjectCard project={project} />
+                                            </motion.div>
+                                        ))}
+                                    </div>
+
+                                    {archive.length === 0 && (
+                                        <p className="py-10 text-sm text-muted">
+                                            Nothing tagged {filter} outside the featured set.
+                                        </p>
+                                    )}
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+            )}
         </section>
     );
 };
+
+const FilterChip = ({
+    label,
+    active,
+    onClick,
+}: {
+    label: string;
+    active: boolean;
+    onClick: () => void;
+}) => (
+    <button
+        type="button"
+        onClick={onClick}
+        aria-pressed={active}
+        className={cn(
+            'border px-3 py-1.5 font-mono text-[0.625rem] uppercase tracking-[0.1em] transition-colors duration-300',
+            active
+                ? 'border-ember bg-ember/10 text-ember'
+                : 'border-line text-muted hover:border-muted hover:text-ink',
+        )}
+    >
+        {label}
+    </button>
+);

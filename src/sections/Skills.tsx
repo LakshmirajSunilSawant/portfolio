@@ -1,51 +1,70 @@
-import { motion } from "framer-motion";
-import { resumeData } from "../data/resume";
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
+import { skillTaxonomy } from '../data/career';
+import { useTheme } from '../hooks/useTheme';
+import { SectionHeader } from '../components/SectionHeader';
+import { FadeIn } from '../components/Reveal';
+
+/*
+  The field is code-split and only requested once the section is close to the
+  viewport, so neither the motion loop nor the icon paths are in the critical
+  bundle. Until then this is a static list, which is also the no-JS result.
+*/
+const SkillsField = lazy(() =>
+    import('../components/SkillsField').then((module) => ({ default: module.SkillsField })),
+);
 
 export const Skills = () => {
-    const categories = Object.keys(resumeData.skills) as Array<keyof typeof resumeData.skills>;
+    const { theme } = useTheme();
+    const sentinel = useRef<HTMLDivElement>(null);
+    const [shouldLoad, setShouldLoad] = useState(false);
+
+    useEffect(() => {
+        const element = sentinel.current;
+        if (!element) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setShouldLoad(true);
+                    observer.disconnect();
+                }
+            },
+            { rootMargin: '300px' },
+        );
+
+        observer.observe(element);
+        return () => observer.disconnect();
+    }, []);
 
     return (
-        <section id="skills" className="py-20 relative">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="mb-16 text-center md:text-left"
-            >
-                <span className="text-purple-500 font-medium tracking-wider text-sm uppercase">Technologies</span>
-                <h2 className="text-4xl md:text-5xl font-bold mt-2">Technical Skills</h2>
-            </motion.div>
+        <section id="skills" className="mx-auto max-w-shell px-6 py-24 md:px-10 md:py-32">
+            <SectionHeader
+                index="04"
+                title="Skills"
+                aside="Hover to hold one still. Tap to name it."
+            />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {categories.map((category, index) => (
-                    <motion.div
-                        key={category}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.1 }}
-                        className="bg-white/5 rounded-2xl p-6 border border-white/5 hover:border-purple-500/30 hover:bg-white/[0.07] transition-all group"
-                    >
-                        <h3 className="text-xl font-bold capitalize mb-4 text-purple-400 border-b border-white/10 pb-2 group-hover:text-purple-300 transition-colors">
-                            {category}
-                        </h3>
-                        <div className="flex flex-wrap gap-2">
-                            {resumeData.skills[category].map((skill, skillIndex) => (
-                                <motion.span
-                                    key={skill}
-                                    initial={{ opacity: 0, scale: 0.8 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    whileHover={{ scale: 1.1, y: -2 }}
-                                    transition={{ delay: skillIndex * 0.02 }}
-                                    viewport={{ once: true }}
-                                    className="px-3 py-1.5 text-sm bg-white/5 rounded-lg text-gray-300 hover:bg-purple-500/20 hover:text-white hover:border-purple-500/50 border border-transparent transition-all cursor-default"
-                                >
-                                    {skill}
-                                </motion.span>
+            <div className="grid gap-12 md:grid-cols-12 md:gap-10">
+                <div className="md:col-span-5 lg:col-span-4">
+                    <FadeIn>
+                        <dl className="space-y-7">
+                            {skillTaxonomy.map((group) => (
+                                <div key={group.label}>
+                                    <dt className="label mb-2">{group.label}</dt>
+                                    <dd className="text-sm leading-relaxed text-muted">
+                                        {group.items.join(', ')}
+                                    </dd>
+                                </div>
                             ))}
-                        </div>
-                    </motion.div>
-                ))}
+                        </dl>
+                    </FadeIn>
+                </div>
+
+                <div ref={sentinel} className="md:col-span-7 lg:col-span-7 lg:col-start-6">
+                    <Suspense fallback={<div className="h-[26rem] sm:h-[30rem]" />}>
+                        {shouldLoad ? <SkillsField theme={theme} /> : <div className="h-[26rem] sm:h-[30rem]" />}
+                    </Suspense>
+                </div>
             </div>
         </section>
     );

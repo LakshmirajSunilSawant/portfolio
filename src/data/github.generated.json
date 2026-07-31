@@ -1,0 +1,142 @@
+{
+  "user": "LakshmirajSunilSawant",
+  "fetchedAt": "2026-07-31T15:38:04.303Z",
+  "repos": [
+    {
+      "name": "Leet-and-GFG",
+      "description": null,
+      "language": "Python",
+      "stack": [
+        "Python",
+        "Java"
+      ],
+      "topics": [],
+      "stars": 0,
+      "homepage": null,
+      "url": "https://github.com/LakshmirajSunilSawant/Leet-and-GFG",
+      "pushedAt": "2026-07-30T06:19:51Z"
+    },
+    {
+      "name": "selenium-elpais-browserstack",
+      "description": null,
+      "language": "Python",
+      "stack": [
+        "Python"
+      ],
+      "topics": [],
+      "stars": 0,
+      "homepage": null,
+      "url": "https://github.com/LakshmirajSunilSawant/selenium-elpais-browserstack",
+      "pushedAt": "2026-07-29T06:27:26Z"
+    },
+    {
+      "name": "VectorShift-Assignment",
+      "description": null,
+      "language": "JavaScript",
+      "stack": [
+        "JavaScript",
+        "Python",
+        "Docker"
+      ],
+      "topics": [],
+      "stars": 0,
+      "homepage": null,
+      "url": "https://github.com/LakshmirajSunilSawant/VectorShift-Assignment",
+      "pushedAt": "2026-07-19T19:00:30Z"
+    },
+    {
+      "name": "InferStream",
+      "description": null,
+      "language": "Python",
+      "stack": [
+        "Python",
+        "Docker"
+      ],
+      "topics": [],
+      "stars": 0,
+      "homepage": null,
+      "url": "https://github.com/LakshmirajSunilSawant/InferStream",
+      "pushedAt": "2026-04-19T09:17:12Z"
+    },
+    {
+      "name": "ca-pro-manager",
+      "description": null,
+      "language": "TypeScript",
+      "stack": [
+        "TypeScript",
+        "Go",
+        "JavaScript"
+      ],
+      "topics": [],
+      "stars": 0,
+      "homepage": null,
+      "url": "https://github.com/LakshmirajSunilSawant/ca-pro-manager",
+      "pushedAt": "2026-01-15T12:42:12Z"
+    },
+    {
+      "name": "VoltScan-MIL",
+      "description": "AI-powered detection of photovoltaic cell defects using Vision Transformers and Multi-Instance Learning.",
+      "language": "Python",
+      "stack": [
+        "Python",
+        "TypeScript",
+        "Jupyter Notebook",
+        "JavaScript",
+        "Docker"
+      ],
+      "topics": [],
+      "stars": 0,
+      "homepage": null,
+      "url": "https://github.com/LakshmirajSunilSawant/VoltScan-MIL",
+      "pushedAt": "2026-01-15T06:39:31Z"
+    },
+    {
+      "name": "tax-assistant",
+      "description": null,
+      "language": "TypeScript",
+      "stack": [
+        "TypeScript",
+        "Python",
+        "PLpgSQL",
+        "JavaScript"
+      ],
+      "topics": [],
+      "stars": 0,
+      "homepage": null,
+      "url": "https://github.com/LakshmirajSunilSawant/tax-assistant",
+      "pushedAt": "2025-12-12T08:46:35Z"
+    },
+    {
+      "name": "AI-powered-DevOps-Assistant",
+      "description": null,
+      "language": "Python",
+      "stack": [
+        "Python",
+        "TypeScript",
+        "Docker",
+        "JavaScript"
+      ],
+      "topics": [],
+      "stars": 0,
+      "homepage": null,
+      "url": "https://github.com/LakshmirajSunilSawant/AI-powered-DevOps-Assistant",
+      "pushedAt": "2025-12-09T16:02:52Z"
+    },
+    {
+      "name": "onecommand-trader",
+      "description": "AI-powered stock trading platform with natural language commands | FastAPI + React + Google Gemini",
+      "language": "Python",
+      "stack": [
+        "Python",
+        "JavaScript",
+        "PLpgSQL",
+        "Docker"
+      ],
+      "topics": [],
+      "stars": 0,
+      "homepage": null,
+      "url": "https://github.com/LakshmirajSunilSawant/onecommand-trader",
+      "pushedAt": "2025-12-08T08:58:51Z"
+    }
+  ]
+}

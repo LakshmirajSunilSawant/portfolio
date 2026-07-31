@@ -1,34 +1,45 @@
 /** @type {import('tailwindcss').Config} */
+
+/** Lets every colour token accept an opacity modifier: `text-ink/60`. */
+const token = (name) => ({ opacityValue }) =>
+  opacityValue === undefined
+    ? `rgb(var(--${name}))`
+    : `rgb(var(--${name}) / ${opacityValue})`;
+
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  darkMode: ['class', '[data-theme="dark"]'],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
-        background: "#0a0a0a",
-        foreground: "#ededed",
+        paper: token('paper'),
+        surface: token('surface'),
+        line: token('line'),
+        ink: token('ink'),
+        muted: token('muted'),
+        ember: token('ember'),
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        // Display serif for headlines only — it ships a single weight by design.
+        display: ['"Instrument Serif"', 'Georgia', 'serif'],
+        sans: ['"Inter Tight Variable"', 'Inter', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono Variable"', 'ui-monospace', 'monospace'],
       },
-      animation: {
-        gradient: "gradient 8s linear infinite",
+      fontSize: {
+        // Fluid display sizes, so the hero needs no breakpoint ladder.
+        'display-sm': ['clamp(2.25rem, 6vw, 3.5rem)', { lineHeight: '1.02', letterSpacing: '-0.02em' }],
+        'display-md': ['clamp(2.75rem, 9vw, 5.5rem)', { lineHeight: '0.98', letterSpacing: '-0.025em' }],
+        'display-lg': ['clamp(3rem, 12vw, 8rem)', { lineHeight: '0.94', letterSpacing: '-0.03em' }],
       },
-      keyframes: {
-        gradient: {
-          "0%, 100%": {
-            "background-size": "200% 200%",
-            "background-position": "left center"
-          },
-          "50%": {
-            "background-size": "200% 200%",
-            "background-position": "right center"
-          }
-        }
-      }
+      maxWidth: {
+        shell: '78rem',
+        readable: '38rem',
+      },
+      transitionTimingFunction: {
+        // Slow-out expo. Every reveal uses it, so motion reads as one system.
+        reveal: 'cubic-bezier(0.16, 1, 0.3, 1)',
+      },
     },
   },
   plugins: [],
-}
+};
